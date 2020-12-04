@@ -1,0 +1,50 @@
+import sys
+
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton
+from PyQt5.QtGui import QIcon, QPixmap
+
+class 기본위치(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.UI초기화()
+
+    def UI초기화(self):
+        
+        # 테스트버튼 = QPushButton('버튼입니다.', self)
+        # 테스트버튼.setGeometry(50, 200, 100, 40)
+        # 테스트버튼.move(30, 100)
+        # 테스트버튼.resize(300, 50)
+        # 테스트버튼.setFixedSize(w, h)
+        # 테스트버튼.setFixedWidth(w)
+        # 테스트버튼.setFixedHeight(h)
+
+        파이라벨 = QLabel('나는 파이', self)
+        파이라벨.move(60, 20)
+        썬라벨 = QLabel('나는 썬', self)
+        썬라벨.move(230, 60)
+
+        파이이미지 = QLabel(self)
+        파이이미지.setPixmap(QPixmap('img/weniv-pie.png')) # 이미지 설정
+        파이이미지.move(40, 40)
+
+        썬이미지 = QLabel(self)
+        썬이미지.setPixmap(QPixmap('img/weniv-sun.png'))
+        썬이미지.move(200, 80)
+
+        파이버튼 = QPushButton('파이', self)
+        파이버튼.move(70, 230)
+        썬버튼 = QPushButton('썬', self)
+        썬버튼.move(230, 230)
+
+
+
+        self.setWindowIcon(QIcon('img/weniv-licat.png'))
+        self.setGeometry(300, 300, 400, 300)
+        self.show()
+
+    
+
+프로그램무한반복 = QApplication(sys.argv)
+실행인스턴스 = 기본위치()
+프로그램무한반복.exec_()
+
