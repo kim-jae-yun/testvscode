@@ -32,18 +32,18 @@ class 무인가게프로그램(QMainWindow):
         self.이미지 = QLabel(self)
         self.이미지.move(170, 100)
         
-        self.가이드 = QLabel('File을 눌러 모델 추가 후 이미지 삽입하여 인식', self)
+        self.가이드 = QLabel('File을 눌러 모델 추가 후 이미지 삽입하여 인식하세요!!', self)
         self.가이드.move(150, 500)
         self.가이드.adjustSize()
 
         self.계좌번호 = QLabel('(주)생선가게 위니브은행 999-999999-9999', self)
         self.계좌번호.move(200, 550)
         self.계좌번호.adjustSize()
-        self.계좌번호.setHidden(True)
+        self.계좌번호.setHidden(True)        # 보이지 않음
 
         self.이미지업로드 = QPushButton("이미지 업로드", self)
         self.이미지업로드.move(170, 430)
-        self.이미지업로드.setEnabled(False)
+        self.이미지업로드.setEnabled(False)  # 버튼이 안눌러짐
         self.이미지업로드.clicked.connect(self.loadImage)
 
         self.결제버튼 = QPushButton("결제하기", self)
@@ -98,7 +98,9 @@ class 무인가게프로그램(QMainWindow):
             행렬 = 행렬.reshape(-1, 28, 28)
 
             예측 = self.인식모델.predict(행렬)[0]  # 이미지 인식 진행
+            # print(f'예측 : {예측}')
             결과 = np.argmax(예측)  # 제일 높게 나온 예측 값
+            # print(f'결과 : {결과}')
             self.가이드.setText("선택하신 제품은 " + str(self.예측정보리스트.get(결과)[0])\
                 + "이고 결재하실 금액은 "\
                 + "{:,}".format(self.예측정보리스트.get(결과)[1])\
